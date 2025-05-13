@@ -1,46 +1,70 @@
-# Getting Started with Create React App
+# Google Login Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React client application implementing social login functionality using Google OAuth.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Authentication using Google OAuth 2.0
+- Access token and refresh token management after login
+- Token information display and copy functionality
+- Logout functionality
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- React 19
+- TypeScript
+- @react-oauth/google - Google OAuth integration
+- CSS - Styling
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (16.x or higher)
+- npm or yarn
+- OAuth 2.0 client ID created in Google Cloud Platform
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+git clone https://github.com/yourusername/google-login-client.git
+cd google-login-client
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Install dependencies
 
-### `npm run eject`
+```bash
+npm install
+# or
+yarn install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. Set up environment variables (if needed)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   - Create a `.env` file in the root folder and set necessary environment variables
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. Start the development server
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+npm run dev
+# or
+yarn dev
+```
 
-## Learn More
+## Backend API Integration
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This client uses the following API endpoints:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- POST `/auth/google`: Handles Google OAuth authentication
+  - Request body: `{ idToken: string }`
+  - Response: `{ accessToken: string, refreshToken: string }`
+
+By default, the backend server URL is set to `http://localhost:8080`. To use a different address, modify the URL in the `Login.tsx` file.
+
+## Notes
+
+- CORS issues may occur in development environment. Proper CORS configuration is required on the backend server.
+- For production environments, it's recommended to manage the client ID using environment variables for security.
+- Token management should use more secure methods (e.g., HttpOnly cookies, encrypted storage) in real applications.
